@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Phiếu học tập KHTN 8 - Bài 32: Dinh dưỡng và tiêu hoá ở người</title>
+<style>
+:root{
+  --bg:#f5f7ff; --card:#ffffff; --ink:#18223a; --muted:#64748b;
+  --blue:#2563eb; --indigo:#4f46e5; --violet:#7c3aed; --cyan:#06b6d4;
+  --ok:#16a34a; --bad:#dc2626; --warn:#f59e0b; --line:#dbe4ff;
+  --shadow:0 10px 28px rgba(52,65,145,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:linear-gradient(135deg,#eef4ff 0%,#f8f5ff 50%,#eefbff 100%);color:var(--ink)}
+.container{max-width:980px;margin:auto;padding:20px 14px 60px}
+.hero{background:linear-gradient(135deg,var(--blue),var(--violet));color:white;padding:24px;border-radius:24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.09);right:-55px;top:-50px}
+.hero h1{margin:0 0 8px;font-size:clamp(24px,4vw,36px);line-height:1.2}.hero p{margin:0;opacity:.92}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:8px 11px;border-radius:999px;font-size:13px}
+.card{background:var(--card);border:1px solid #e7ebff;border-radius:20px;padding:20px;margin-top:16px;box-shadow:var(--shadow)}
+.card h2{margin:0 0 14px;font-size:20px;color:#283a8f}.card h3{margin:18px 0 10px;font-size:16px;color:#3b3f76}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:720px){.grid,.grid3{grid-template-columns:1fr}.container{padding:12px 10px 40px}.card{padding:16px}.hero{padding:20px}}
+label{font-weight:600;font-size:14px}input[type=text],select{width:100%;margin-top:6px;padding:11px 12px;border:1.5px solid #cdd7f7;border-radius:12px;font-size:15px;outline:none;background:#fbfcff}input[type=text]:focus,select:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(79,70,229,.08)}
+.objectives{display:grid;gap:9px}.objective{padding:11px 12px;background:#f7f8ff;border-left:4px solid var(--indigo);border-radius:10px;font-size:14px}
+.q{padding:14px;border:1px solid #e7eaff;border-radius:15px;margin:12px 0;background:#fcfdff}.q strong{display:block;margin-bottom:10px}.opt{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border-radius:10px}.opt:hover{background:#f1f5ff}.opt input{margin-top:3px}
+.tf-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px;border-bottom:1px dashed #e4e7f6}.tf-row:last-child{border-bottom:none}.tf-row span:first-child{font-size:14px}.tf-pill{display:flex;align-items:center;gap:5px;padding:6px 9px;border-radius:999px;background:#f7f7ff}
+.inline{display:inline-block;min-width:130px;max-width:220px;margin:0 5px;padding:7px 9px;border:1px solid #cdd7f7;border-radius:9px}
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.match-wrap{grid-template-columns:1fr}}
+.match-item{background:#f8f9ff;border:1px solid #e3e7ff;border-radius:12px;padding:12px;margin:8px 0}
+.drag-bank,.drop-grid{display:flex;flex-wrap:wrap;gap:9px}.drag{padding:10px 12px;background:linear-gradient(135deg,#eef2ff,#f3e8ff);border:1px solid #cdd5ff;border-radius:12px;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;font-size:14px}.drag.dragging{opacity:.35}.drag-ghost{position:fixed;z-index:9999;pointer-events:none;opacity:.92;transform:scale(1.03);box-shadow:0 14px 32px rgba(30,41,59,.22);max-width:78vw}.dropzone{min-height:110px;flex:1 1 220px;background:#fafaff;border:2px dashed #b7c4ff;border-radius:14px;padding:10px}.dropzone h4{margin:0 0 8px;color:#3d3a8a}.dropzone.over{background:#eef2ff;border-color:var(--indigo)}.dropzone .drag{margin:6px 4px;background:white}
+.actions{display:flex;flex-wrap:wrap;gap:10px;position:sticky;bottom:8px;margin-top:18px;z-index:5}.btn{border:none;border-radius:13px;padding:12px 16px;font-weight:700;cursor:pointer;font-size:14px;box-shadow:0 6px 16px rgba(30,41,59,.12)}.primary{background:linear-gradient(135deg,var(--blue),var(--violet));color:white}.secondary{background:white;color:#334155;border:1px solid #d8def7}.btn:active{transform:translateY(1px)}
+.result{display:none;margin-top:14px;padding:14px;border-radius:14px;background:#eefbf3;border:1px solid #bde6ca}.result.bad{background:#fff5f5;border-color:#fecaca}.feedback{font-size:13px;margin-top:7px;font-weight:700}.correct{color:var(--ok)}.wrong{color:var(--bad)}
+.small{font-size:13px;color:var(--muted)}.progress{height:10px;background:#e8ecfb;border-radius:999px;overflow:hidden;margin-top:10px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:.35s}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#4c51a7;background:#eef2ff;border-radius:999px;padding:6px 9px;margin-bottom:10px}
+footer{text-align:center;color:#64748b;font-size:12px;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero">
+    <h1>PHIẾU HỌC TẬP KHTN 8</h1>
+    <p><b>Bài 32: Dinh dưỡng và tiêu hoá ở người</b> — làm trực tiếp trên trình duyệt</p>
+    <div class="badges"><span class="badge">🧠 Hiểu kiến thức</span><span class="badge">🧩 Kéo – thả</span><span class="badge">✅ Tự chấm điểm</span><span class="badge">📱 Tối ưu điện thoại</span></div>
+  </section>
+
+  <section class="card">
+    <div class="tag">👤 THÔNG TIN HỌC SINH</div>
+    <div class="grid">
+      <label>Họ và tên<input type="text" id="studentName" placeholder="Nhập họ và tên"></label>
+      <label>Lớp<input type="text" id="studentClass" placeholder="Ví dụ: 8A3"></label>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="tag">🎯 MỤC TIÊU BÀI HỌC</div>
+    <div class="objectives">
+      <div class="objective">Nhận biết nhu cầu dinh dưỡng của cơ thể và nguyên tắc lập khẩu phần hợp lí.</div>
+      <div class="objective">Mô tả được các cơ quan chính của hệ tiêu hoá và vai trò của các đoạn trong ống tiêu hoá.</div>
+      <div class="objective">Nêu được một số nguyên tắc an toàn vệ sinh thực phẩm và cách phòng bệnh răng miệng, viêm loét dạ dày – tá tràng.</div>
+    </div>
+  </section>
+
+  <section class="card" id="mcqSection">
+    <div class="tag">A. TRẮC NGHIỆM</div>
+    <div class="q" data-q="mc1"><strong>1. Bộ phận nào là nơi hấp thụ phần lớn chất dinh dưỡng đã được tiêu hoá?</strong>
+      <label class="opt"><input type="radio" name="mc1" value="a"> A. Khoang miệng</label>
+      <label class="opt"><input type="radio" name="mc1" value="b"> B. Dạ dày</label>
+      <label class="opt"><input type="radio" name="mc1" value="c"> C. Ruột non</label>
+      <label class="opt"><input type="radio" name="mc1" value="d"> D. Ruột già</label>
+    </div>
+    <div class="q" data-q="mc2"><strong>2. Khi lập khẩu phần ăn, điều nào phù hợp nhất?</strong>
+      <label class="opt"><input type="radio" name="mc2" value="a"> A. Chỉ cần đủ năng lượng</label>
+      <label class="opt"><input type="radio" name="mc2" value="b"> B. Đảm bảo đủ lượng thức ăn phù hợp nhu cầu dinh dưỡng của cơ thể</label>
+      <label class="opt"><input type="radio" name="mc2" value="c"> C. Ăn càng nhiều protein càng tốt</label>
+      <label class="opt"><input type="radio" name="mc2" value="d"> D. Mọi lứa tuổi dùng cùng một khẩu phần</label>
+    </div>
+    <div class="q" data-q="mc3"><strong>3. Enzyme pepsin hoạt động chủ yếu ở đâu?</strong>
+      <label class="opt"><input type="radio" name="mc3" value="a"> A. Khoang miệng</label>
+      <label class="opt"><input type="radio" name="mc3" value="b"> B. Dạ dày</label>
+      <label class="opt"><input type="radio" name="mc3" value="c"> C. Ruột già</label>
+      <label class="opt"><input type="radio" name="mc3" value="d"> D. Hậu môn</label>
+    </div>
+    <div class="q" data-q="mc4"><strong>4. Biện pháp nào giúp phòng sâu răng hiệu quả?</strong>
+      <label class="opt"><input type="radio" name="mc4" value="a"> A. Ăn nhiều đồ ngọt trước khi ngủ</label>
+      <label class="opt"><input type="radio" name="mc4" value="b"> B. Chỉ súc miệng bằng nước</label>
+      <label class="opt"><input type="radio" name="mc4" value="c"> C. Vệ sinh răng miệng đúng cách và hạn chế đồ ngọt</label>
+      <label class="opt"><input type="radio" name="mc4" value="d"> D. Không cần khám răng định kì</label>
+    </div>
+    <div class="q" data-q="mc5"><strong>5. Thực phẩm nấm mốc có thể gây nguy hiểm chủ yếu vì:</strong>
+      <label class="opt"><input type="radio" name="mc5" value="a"> A. Chỉ làm thức ăn đổi màu</label>
+      <label class="opt"><input type="radio" name="mc5" value="b"> B. Có thể chứa độc tố hoặc vi sinh vật gây hại</label>
+      <label class="opt"><input type="radio" name="mc5" value="c"> C. Làm thức ăn ngọt hơn</label>
+      <label class="opt"><input type="radio" name="mc5" value="d"> D. Làm tăng vitamin</label>
+    </div>
+  </section>
+
+  <section class="card" id="tfSection">
+    <div class="tag">B. ĐÚNG / SAI</div>
+    <div class="tf-row"><span>1. Nhu cầu dinh dưỡng thay đổi theo lứa tuổi, giới tính và mức độ hoạt động.</span><label class="tf-pill"><input type="radio" name="tf1" value="T">Đúng</label><label class="tf-pill"><input type="radio" name="tf1" value="F">Sai</label></div>
+    <div class="tf-row"><span>2. Ruột già là nơi hấp thụ phần lớn amino acid và đường đơn.</span><label class="tf-pill"><input type="radio" name="tf2" value="T">Đúng</label><label class="tf-pill"><input type="radio" name="tf2" value="F">Sai</label></div>
+    <div class="tf-row"><span>3. Có thể ăn thực phẩm đã quá hạn nếu hình thức bên ngoài vẫn bình thường.</span><label class="tf-pill"><input type="radio" name="tf3" value="T">Đúng</label><label class="tf-pill"><input type="radio" name="tf3" value="F">Sai</label></div>
+    <div class="tf-row"><span>4. Vi khuẩn Helicobacter pylori có thể liên quan đến viêm loét dạ dày – tá tràng.</span><label class="tf-pill"><input type="radio" name="tf4" value="T">Đúng</label><label class="tf-pill"><input type="radio" name="tf4" value="F">Sai</label></div>
+    <div class="tf-row"><span>5. Tinh bột bắt đầu được tiêu hoá hoá học ngay trong khoang miệng.</span><label class="tf-pill"><input type="radio" name="tf5" value="T">Đúng</label><label class="tf-pill"><input type="radio" name="tf5" value="F">Sai</label></div>
+  </section>
+
+  <section class="card" id="fillSection">
+    <div class="tag">C. ĐIỀN KHUYẾT</div>
+    <p>1. Ở khoang miệng, enzyme amylase của nước bọt giúp biến đổi một phần tinh bột thành <input class="inline" id="f1" type="text" placeholder="...">.</p>
+    <p>2. Dạ dày co bóp giúp thức ăn thấm đều dịch vị; enzyme <input class="inline" id="f2" type="text" placeholder="..."> tiêu hoá một phần protein.</p>
+    <p>3. Ruột non có nhiều nếp gấp và <input class="inline" id="f3" type="text" placeholder="..."> giúp tăng diện tích hấp thụ.</p>
+    <p>4. Để bảo đảm an toàn thực phẩm, cần ăn <input class="inline" id="f4" type="text" placeholder="...">, uống sôi và bảo quản thức ăn đúng cách.</p>
+  </section>
+
+  <section class="card" id="matchSection">
+    <div class="tag">D. NỐI CỘT</div>
+    <p class="small">Chọn đáp án phù hợp cho từng cơ quan.</p>
+    <div class="match-wrap">
+      <div>
+        <div class="match-item"><b>1. Khoang miệng</b><select id="m1"><option value="">-- Chọn chức năng --</option><option value="A">A. Hấp thụ nước, tạo phân</option><option value="B">B. Nhai, nghiền; bắt đầu tiêu hoá tinh bột</option><option value="C">C. Co bóp, dịch vị; tiêu hoá một phần protein</option><option value="D">D. Tiêu hoá mạnh và hấp thụ phần lớn chất dinh dưỡng</option></select></div>
+        <div class="match-item"><b>2. Dạ dày</b><select id="m2"><option value="">-- Chọn chức năng --</option><option value="A">A. Hấp thụ nước, tạo phân</option><option value="B">B. Nhai, nghiền; bắt đầu tiêu hoá tinh bột</option><option value="C">C. Co bóp, dịch vị; tiêu hoá một phần protein</option><option value="D">D. Tiêu hoá mạnh và hấp thụ phần lớn chất dinh dưỡng</option></select></div>
+      </div>
+      <div>
+        <div class="match-item"><b>3. Ruột non</b><select id="m3"><option value="">-- Chọn chức năng --</option><option value="A">A. Hấp thụ nước, tạo phân</option><option value="B">B. Nhai, nghiền; bắt đầu tiêu hoá tinh bột</option><option value="C">C. Co bóp, dịch vị; tiêu hoá một phần protein</option><option value="D">D. Tiêu hoá mạnh và hấp thụ phần lớn chất dinh dưỡng</option></select></div>
+        <div class="match-item"><b>4. Ruột già</b><select id="m4"><option value="">-- Chọn chức năng --</option><option value="A">A. Hấp thụ nước, tạo phân</option><option value="B">B. Nhai, nghiền; bắt đầu tiêu hoá tinh bột</option><option value="C">C. Co bóp, dịch vị; tiêu hoá một phần protein</option><option value="D">D. Tiêu hoá mạnh và hấp thụ phần lớn chất dinh dưỡng</option></select></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="dragSection">
+    <div class="tag">E. KÉO – THẢ PHÂN LOẠI</div>
+    <p><b>Nhiệm vụ:</b> Kéo các thẻ vào nhóm phù hợp.</p>
+    <div class="drag-bank" id="bank">
+      <div class="drag" draggable="true" data-group="safe">Ăn chín, uống sôi</div>
+      <div class="drag" draggable="true" data-group="safe">Chọn thực phẩm rõ nguồn gốc</div>
+      <div class="drag" draggable="true" data-group="unsafe">Ăn thực phẩm đã nấm mốc</div>
+      <div class="drag" draggable="true" data-group="safe">Bảo quản thực phẩm đúng cách</div>
+      <div class="drag" draggable="true" data-group="unsafe">Dùng thực phẩm quá hạn</div>
+      <div class="drag" draggable="true" data-group="unsafe">Ăn thịt chưa nấu chín kĩ</div>
+    </div>
+    <div class="drop-grid" style="margin-top:14px">
+      <div class="dropzone" data-zone="safe"><h4>✅ Thói quen an toàn</h4></div>
+      <div class="dropzone" data-zone="unsafe"><h4>⚠️ Thói quen không an toàn</h4></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="tag">📊 KẾT QUẢ</div>
+    <div id="scoreText"><b>Chưa chấm điểm.</b></div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <div id="resultBox" class="result"></div>
+    <div class="actions">
+      <button class="btn primary" onclick="gradeQuiz()">✅ Chấm điểm</button>
+      <button class="btn secondary" onclick="resetQuiz()">↻ Làm lại</button>
+    </div>
+  </section>
+  <footer>Phiếu học tập tương tác – KHTN 8 • Bài 32: Dinh dưỡng và tiêu hoá ở người</footer>
+</div>
+
+<script>
+const answers = {
+  mc:{mc1:'c',mc2:'b',mc3:'b',mc4:'c',mc5:'b'},
+  tf:{tf1:'T',tf2:'F',tf3:'F',tf4:'T',tf5:'T'},
+  fill:{f1:['maltose','mantôzơ','mantozo','đường maltose'],f2:['pepsin'],f3:['lông ruột','long ruot'],f4:['chín','chin']},
+  match:{m1:'B',m2:'C',m3:'D',m4:'A'}
+};
+
+// Âm thanh click nhẹ bằng Web Audio API (không cần file âm thanh ngoài)
+let audioCtx=null;
+function clickSound(freq=620,duration=0.035){
+  try{
+    if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended') audioCtx.resume();
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type='sine'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0.035,audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.0001,audioCtx.currentTime+duration);
+    o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime+duration);
+  }catch(e){}
+}
+
+// Phát tiếng click khi thao tác với nút, radio, select, ô nhập
+['click','change'].forEach(evt=>{
+  document.addEventListener(evt,e=>{
+    if(e.target.closest('button,input,select,.drag,.dropzone')) clickSound();
+  },{passive:true});
+});
+
+// Kéo – thả: hỗ trợ chuột + cảm ứng điện thoại bằng Pointer Events
+let dragged=null, ghost=null, pointerDragging=false, startX=0, startY=0;
+function clearSelected(){
+  document.querySelectorAll('.drag').forEach(x=>x.style.outline='');
+}
+function moveCardToZone(card, zone){
+  if(!card || !zone) return;
+  zone.appendChild(card);
+  card.style.outline='';
+  clickSound(760,0.04);
+}
+function makeGhost(card,x,y){
+  ghost=card.cloneNode(true);
+  ghost.classList.add('drag-ghost');
+  ghost.style.width=Math.min(card.getBoundingClientRect().width, window.innerWidth*0.78)+'px';
+  document.body.appendChild(ghost);
+  moveGhost(x,y);
+}
+function moveGhost(x,y){
+  if(!ghost) return;
+  ghost.style.left=(x+12)+'px';
+  ghost.style.top=(y+12)+'px';
+}
+function zoneAt(x,y){
+  if(ghost) ghost.style.display='none';
+  const el=document.elementFromPoint(x,y);
+  if(ghost) ghost.style.display='';
+  return el ? el.closest('.dropzone') : null;
+}
+
+document.querySelectorAll('.drag').forEach(card=>{
+  // Desktop HTML5 drag vẫn hoạt động
+  card.addEventListener('dragstart',()=>{dragged=card;card.classList.add('dragging');clickSound()});
+  card.addEventListener('dragend',()=>{card.classList.remove('dragging');dragged=null});
+
+  // Pointer Events: kéo thật trên điện thoại/máy tính bảng
+  card.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='mouse' && e.button!==0) return;
+    dragged=card; startX=e.clientX; startY=e.clientY; pointerDragging=false;
+    card.setPointerCapture?.(e.pointerId);
+    clearSelected(); card.style.outline='3px solid rgba(79,70,229,.25)';
+  });
+  card.addEventListener('pointermove',e=>{
+    if(dragged!==card) return;
+    const dist=Math.hypot(e.clientX-startX,e.clientY-startY);
+    if(!pointerDragging && dist>8){
+      pointerDragging=true; card.classList.add('dragging'); makeGhost(card,e.clientX,e.clientY); clickSound(700,0.03);
+    }
+    if(pointerDragging){ e.preventDefault(); moveGhost(e.clientX,e.clientY); document.querySelectorAll('.dropzone').forEach(z=>z.classList.toggle('over',z===zoneAt(e.clientX,e.clientY))); }
+  });
+  card.addEventListener('pointerup',e=>{
+    if(dragged!==card) return;
+    if(pointerDragging){
+      const z=zoneAt(e.clientX,e.clientY); if(z) moveCardToZone(card,z);
+    } else {
+      // Chạm 1 lần để chọn, sau đó chạm vùng đích cũng được
+      clearSelected(); card.style.outline='3px solid rgba(79,70,229,.25)'; dragged=card;
+    }
+    document.querySelectorAll('.dropzone').forEach(z=>z.classList.remove('over'));
+    card.classList.remove('dragging'); if(ghost){ghost.remove();ghost=null;} pointerDragging=false;
+  });
+  card.addEventListener('pointercancel',()=>{card.classList.remove('dragging');if(ghost){ghost.remove();ghost=null;}pointerDragging=false;dragged=null;});
+});
+
+document.querySelectorAll('.dropzone').forEach(z=>{
+  z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('over')});
+  z.addEventListener('dragleave',()=>z.classList.remove('over'));
+  z.addEventListener('drop',e=>{e.preventDefault();z.classList.remove('over');if(dragged){moveCardToZone(dragged,z);dragged=null;}});
+  z.addEventListener('click',()=>{if(dragged && !pointerDragging){moveCardToZone(dragged,z);dragged=null;}});
+});
+
+function norm(s){return (s||'').toLowerCase().trim().replace(/\s+/g,' ')}
+function markContainer(el,ok){
+  if(!el) return;
+  let fb=el.querySelector('.feedback'); if(fb) fb.remove();
+  fb=document.createElement('div'); fb.className='feedback '+(ok?'correct':'wrong'); fb.textContent=ok?'✓ Chính xác':'✗ Chưa đúng'; el.appendChild(fb);
+}
+function gradeQuiz(){
+  let score=0,total=0;
+  // MCQ
+  Object.entries(answers.mc).forEach(([q,a])=>{total++;const checked=document.querySelector(`input[name="${q}"]:checked`);const ok=checked&&checked.value===a;if(ok)score++;markContainer(document.querySelector(`[data-q="${q}"]`),ok)});
+  // TF
+  Object.entries(answers.tf).forEach(([q,a],i)=>{total++;const checked=document.querySelector(`input[name="${q}"]:checked`);const ok=checked&&checked.value===a;if(ok)score++; const row=document.querySelectorAll('.tf-row')[i]; let old=row.querySelector('.feedback'); if(old)old.remove(); let fb=document.createElement('div');fb.className='feedback '+(ok?'correct':'wrong');fb.textContent=ok?'✓':'✗';row.appendChild(fb)});
+  // Fill
+  Object.entries(answers.fill).forEach(([id,arr])=>{total++;const el=document.getElementById(id);const ok=arr.map(norm).includes(norm(el.value)); if(ok)score++; el.style.borderColor=ok?'#16a34a':'#dc2626';});
+  // Match
+  Object.entries(answers.match).forEach(([id,a])=>{total++;const el=document.getElementById(id);const ok=el.value===a;if(ok)score++;el.style.borderColor=ok?'#16a34a':'#dc2626'});
+  // Drag-drop 6 cards
+  document.querySelectorAll('.drag').forEach(card=>{total++;const zone=card.closest('.dropzone');const ok=zone && zone.dataset.zone===card.dataset.group;if(ok)score++;card.style.borderColor=ok?'#16a34a':'#dc2626'});
+
+  const pct=Math.round(score/total*100); const ten=(score/total*10).toFixed(1);
+  document.getElementById('scoreText').innerHTML=`<b>Điểm: ${ten}/10</b> &nbsp;•&nbsp; ${score}/${total} ý đúng`;
+  document.getElementById('progressBar').style.width=pct+'%';
+  const box=document.getElementById('resultBox'); box.style.display='block';box.className='result'+(pct<60?' bad':'');
+  box.innerHTML = pct>=85 ? '🌟 Rất tốt! Em đã nắm chắc kiến thức trọng tâm của bài.' : pct>=60 ? '👍 Khá tốt! Hãy xem lại những câu được đánh dấu đỏ để hoàn thiện hơn.' : '📘 Em cần xem lại phần tiêu hoá ở người, an toàn thực phẩm và phòng bệnh tiêu hoá.';
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function resetQuiz(){
+  if(!confirm('Em có chắc muốn xoá toàn bộ đáp án và làm lại?')) return;
+  document.querySelectorAll('input[type=radio]').forEach(x=>x.checked=false);
+  document.querySelectorAll('#fillSection input[type=text]').forEach(x=>{x.value='';x.style.borderColor='#cdd7f7'});
+  document.querySelectorAll('select').forEach(x=>{x.value='';x.style.borderColor='#cdd7f7'});
+  document.querySelectorAll('.feedback').forEach(x=>x.remove());
+  const bank=document.getElementById('bank'); document.querySelectorAll('.drag').forEach(x=>{bank.appendChild(x);x.style.borderColor='#cdd5ff';x.style.outline=''});
+  document.getElementById('scoreText').innerHTML='<b>Chưa chấm điểm.</b>';document.getElementById('progressBar').style.width='0';document.getElementById('resultBox').style.display='none';
+}
+</script>
+</body>
+</html>
